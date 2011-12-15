@@ -1,0 +1,231 @@
+<script> 
+$(document).ready(
+	function(){
+		// Цены 
+		var price1 = 840;
+		var price2 = 894;
+		var price3 = 1006;
+		// Расходы
+		var rm1 = 0.3;
+		var rm2 = 1.9;
+		var rm3 = 2.1;
+		// Упаковки
+		var ru1 = 10;
+		var ru2 = 25;
+		var ru3 = 25;
+
+		price1 = price1/ru1*rm1;
+		price2 = price2/ru2*rm2;
+		price3 = price3/ru3*rm3;
+		
+		$('form[name=]').submit(function(){
+			return false;
+		});
+		
+		$('#calcbutton').click(function(){
+			var oppol = $('#calcparam1').val();
+			var opsten = $('#calcparam2').val();
+			var oppot = $('#calcparam3').val();
+			var tszs = $('#calcparam4').val();
+			var tszr = $('#calcparam5').val();
+
+			oppol = oppol.replace(',','.');
+			opsten = opsten.replace(',','.');
+			oppot = oppot.replace(',','.');
+			tszs = tszs.replace(',','.');
+			tszr = tszr.replace(',','.');
+
+
+			var oppop = eval(oppol*1+opsten*1+oppot*1);
+			
+			$('#oppol').text(oppol);
+			$('#sumoppol').text(Math.round(oppol*price3*tszr*100)/100);
+			$('#opsten').text(opsten);
+			$('#sumopsten').text(Math.round(opsten*price2*tszs*100)/100);
+			$('#oppot').text(oppot);
+			$('#sumoppot').text(Math.round(oppot*price2*tszs*100)/100);
+			$('#oppop').text(oppop);
+			$('#sumoppop').text(Math.round(oppop*price1*100)/100);
+			oppop = Math.round((oppop*price1*1+oppot*price2*tszs*1+opsten*price2*tszs*1+oppol*price3*tszr*1)*100)/100;
+			$('#tszs').text(tszs);
+			$('#tszr').text(tszr);
+			$('#os').html('<b>'+oppop+'</b>');
+			oppop = Math.round(rm2*tszs*(opsten*1+oppot*1)*10)/10;
+			$('#rst1').text(oppop);
+			oppop = Math.round(rm3*oppol*tszr*10)/10;
+			$('#rams').text(oppop);
+			oppop = Math.round((oppol*1+opsten*1+oppot*1)*rm1*10)/10;
+			$('#rag').text(oppop);
+			$('#result').show();
+			return false;
+		});
+		$("#printbutton").click(function(){
+			if ($.browser.opera)
+				$('#printable').printElement({"overrideElementCSS":true});
+			else
+				$('#printable').printElement();
+		});
+	}
+);
+</script> 
+<style> 
+.centercenter {
+	text-align:center;
+	vertical-align:middle;
+}
+.form {
+	background-color:#f1f1f1;
+	border-radius:6px;
+	box-shadow: 3px 3px 2px rgba(0,0,0,0.3);
+	padding: 20px;
+}
+.form form table {
+	/*width:100%;*/
+	margin: auto;
+}
+.form td {
+	text-align:right;
+	font-size:12px;
+	font-family: 'trebuchet ms', tahoma, arial, sans-serif; 
+	/*border:1px solid black;*/
+}
+#result,
+#printframe,
+#printheader
+{
+	display:none;
+}
+#result table {
+	border-collapse:collapse;
+	border: 1px dotted gray;
+	padding:0;
+	margin: auto;
+	white-space:nowrap;
+}
+#result td {
+	border: 1px dotted gray;
+	text-align:left;
+	padding:5px;
+}
+
+.form input[type="text"] {
+	background-color:white;
+	border: 2px inset;
+	border-radius: 5px;
+	font-size:12px;
+	font-family: 'trebuchet ms', tahoma, arial, sans-serif; 
+	width:50px;
+}
+
+.calcbutton {
+	display:inline-block; 
+	border:0; 
+	margin:0 50px;
+	padding: 5px 5px;
+	font-size:12px;
+	font-family: 'trebuchet ms', tahoma, arial, sans-serif; 
+	background-color:#088ecc;
+	color:white;
+	border-radius:6px;
+	box-shadow:2px 2px 2px rgba(0,0,0,0.5);
+	
+}
+
+#printbutton {
+	background-image: url(/images/calc/print.png);
+	background-position: 2px 50%;
+	background-repeat:no-repeat;
+	padding: 5px 5px 5px 20px;
+}
+
+#printlogo {
+
+}
+#printname {
+	font-size: 16pt;
+}
+#printaddress {
+	margin: 0 0 20px;
+	font-size: 8pt;
+}
+</style> 
+<div class="centercenter"><h1>КАЛЬКУЛЯТОР
+<br>Расчет стоимости радиационно-защитных покрытий АЛЬФАПОЛ ШТ-Барит и АЛЬФАПОЛ М-Барит
+</h1>
+</div>
+<div class="form">
+<form name="calcform"><input type="hidden" name="" id="" value=""><input type="hidden" name="AJAX_CALL" value="Y">
+<table class="layout">
+<tbody>
+<tr>
+	<td><label for="calcparam1">Общая площадь пола, кв.м:</label></td>
+	<td><input id="calcparam1" name="calcparam1" value="16" type="text"></td>
+	<td rowspan="5" class="centercenter"><input type="button" id="calcbutton" class="calcbutton" value="Посчитать"></td>
+</tr>
+<tr>
+	<td><label for="calcparam2">Общая площадь стен, кв.м:</label></td>
+	<td><input id="calcparam2" name="calcparam2" value="44.1" type="text"></td>
+</tr>
+<tr>
+	<td><label for="calcparam3">Общая площадь потолка, кв.м:</label></td>
+	<td><input id="calcparam3" name="calcparam3" value="16" type="text"></td>
+</tr>
+<tr>
+	<td><label for="calcparam4">Толщина слоя защитной штукатурки, мм:</label></td>
+	<td><input id="calcparam4" name="calcparam4" value="20" type="text"></td>
+</tr>
+<tr>
+	<td><label for="calcparam5">Толщина слоя защитного ровнителя пола, мм:</label></td>
+	<td><input id="calcparam5" name="calcparam5" value="20" type="text"></td>
+</tr>
+</tbody></table>
+</form>
+<div id="result" class="centercenter">
+<div id="printable">
+<div id="printheader">
+<table><tr>
+<td>
+	<div id="printlogo"><img src="/images/calc/logo.png" title="АЛЬФАПОЛ"></div>
+</td>
+<td>
+	<div id="printname">ООО «АЛЬФАПОЛ»</div>
+</td>
+</tr>
+<tr><td colspan="2"></td></tr>
+<tr><td colspan="2"><div id="printaddress">Почтовый адрес: 196135, г.&nbsp;Санкт-Петербург ул.Ленсовета д.&nbsp;5<br>тел.: (812)373-9292 (812)373-9294&nbsp;факс: (812)371-2911<br> e-mail: <a href="mailto:alfapol@alfapol.ru">alfapol@alfapol.ru</a> <a href="www.alfapol.ru">www.alfapol.ru</a></div>
+</td>
+</tr>
+<tr><td colspan="2"></td></tr>
+</table>
+</div>
+<b>Расчет стоимости радиационно-защитных покрытий АЛЬФАПОЛ ШТ-Барит и АЛЬФАПОЛ М-Барит</b>
+<table class="calctable">
+<thead>
+<tr>
+<td></td>
+<td></td>
+<td><b>Сумма</b></td>
+</tr>
+</thead>
+<tbody>
+<tr><td>Общая площадь пола, кв.м:</td><td id="oppol"></td><td id="sumoppol"></td></tr>
+<tr><td>Общая площадь стен, кв.м:</td><td id="opsten"></td><td id="sumopsten"></td></tr>
+<tr><td>Общая площадь потолка, кв.м:</td><td id="oppot"></td><td id="sumoppot"></td></tr>
+<tr><td>Общая площадь огрунтованной поверхности, кв.м:</td><td id="oppop"></td><td id="sumoppop"></td></tr>
+<tr><td>Толщина слоя защитной штукатурки, мм:</td><td id="tszs"></td><td></td></tr>
+<tr><td>Толщина слоя защитного ровнителя пола, мм:</td><td id="tszr"></td><td></td></tr>
+<tr><td></td><td><b>Итого общая сумма за материал</b></td><td id="os"></td></tr>
+<tr><td colspan="3"></td></tr>
+<tr><td colspan="3"><b>количество материалов для обеспечения радиационной безопасности и защиты от сверхнормативного воздействия всех видов источников ионизирующих излучений</b></td></tr>
+<tr><td colspan="3"></td></tr>
+<tr><td>Расход штукатурной смеси  АЛЬФАПОЛ ШТ-Барит, кг</td><td id="rst1"></td><td></td></tr>
+<tr><td>Расход ровнителя для пола АЛЬФАПОЛ М-Барит, кг</td><td id="rams"></td><td></td></tr>
+<tr><td>Необходимый объем грунтовки АЛЬФАГРУНТ, лит</td><td id="rag"></td><td></td></tr>
+</tbody>
+</table>
+</div>
+<br><br>
+<input type="button" id="printbutton" class="calcbutton" value="Распечатать"><br><br>
+По всем интересующим вопросам Вы можете обратиться к менеджерам <a href="http://alfapol.ru/kontakti#moskva">вашего региона</a>
+</div>
+</div>

@@ -1,0 +1,79 @@
+.centercenter {
+	text-align:center;
+	vertical-align:middle;
+}
+.form {
+	background-color:#f1f1f1;
+	border-radius:6px;
+	box-shadow: 3px 3px 2px rgba(0,0,0,0.3);
+	padding: 20px;
+}
+.form form table {
+	/*width:100%;*/
+	margin: auto;
+}
+.form td {
+	text-align:right;
+	font-size:12px;
+	font-family: 'trebuchet ms', tahoma, arial, sans-serif; 
+	/*border:1px solid black;*/
+}
+#result,
+#printframe,
+#printheader
+{
+	display:none;
+}
+#result table {
+	border-collapse:collapse;
+	border: 1px dotted gray;
+	padding:0;
+	margin: auto;
+	white-space:nowrap;
+}
+#result td {
+	border: 1px dotted gray;
+	text-align:left;
+	padding:5px;
+}
+
+.form input[type="text"] {
+	background-color:white;
+	border: 2px inset;
+	border-radius: 5px;
+	font-size:12px;
+	font-family: 'trebuchet ms', tahoma, arial, sans-serif; 
+	width:50px;
+}
+
+.calcbutton {
+	display:inline-block; 
+	border:0; 
+	margin:0 50px;
+	padding: 5px 5px;
+	font-size:12px;
+	font-family: 'trebuchet ms', tahoma, arial, sans-serif; 
+	background-color:#088ecc;
+	color:white;
+	border-radius:6px;
+	box-shadow:2px 2px 2px rgba(0,0,0,0.5);
+	
+}
+
+#printbutton {
+	background-image: url(/images/calc/print.png);
+	background-position: 2px 50%;
+	background-repeat:no-repeat;
+	padding: 5px 5px 5px 20px;
+}
+
+#printlogo {
+
+}
+#printname {
+	font-size: 16pt;
+}
+#printaddress {
+	margin: 0 0 20px;
+	font-size: 8pt;
+}
