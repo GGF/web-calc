@@ -8,6 +8,7 @@ type form.css >>formfull.html
 echo ^</style^> >>formfull.html
 type form.html | find /v /i "css" | find /v /i "script" >>formfull.html
 set /a dversion=%dversion%+1
+set /a cversion=%cversion%+1
 echo rem Храним версии >VERSION.bat
 echo set aversion=%aversion% >>VERSION.bat
 echo set bversion=%bversion% >>VERSION.bat
