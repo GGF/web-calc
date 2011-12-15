@@ -2,12 +2,12 @@ $(document).ready(
 	function(){
 		// Цены 
 		var price1 = 840;
-		var price2 = 894;
-		var price3 = 1006;
+		var price2 = 880;
+		var price3 = 986;
 		// Расходы
-		var rm1 = 0.3;
-		var rm2 = 1.9;
-		var rm3 = 2.1;
+		var rm1 = 0.2;
+		var rm2 = 1.4;
+		var rm3 = 1.7;
 		// Упаковки
 		var ru1 = 10;
 		var ru2 = 25;

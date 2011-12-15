@@ -1,5 +1,5 @@
 rem Храним версии 
-set aversion=1  
-set bversion=0  
-set cversion=0  
-set dversion=4 
+set /a aversion=1 
+set /a bversion=0 
+set /a cversion=0 
+set /a dversion=10 
